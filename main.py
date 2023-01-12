@@ -1,5 +1,5 @@
 import numpy as np
-def assign_alphabets(): #works fine
+def assign_alphabets(): #creates a dictionary with all the alphabets A-Z and assigns them a value from 1 to 26
     a=ord("A")
     alphatonum = dict()
     for key in range(1,27):
@@ -8,7 +8,7 @@ def assign_alphabets(): #works fine
         a += 1
         alphatonum.__setitem__(keys,values)
     return alphatonum
-def assign_numeric_value(userinput): #works fine
+def assign_numeric_value(userinput): #Encodes the given string into a numeric list 
     ml=[]
     listuser = list(userinput)
     for i in range(len(listuser)):
@@ -18,13 +18,13 @@ def assign_numeric_value(userinput): #works fine
             elif listuser[i]==' ':
                 ml.append(0)
                 break
-    if len(ml)%3!=0:
+    if len(ml)%3!=0: # making sure that the list is a multiple of 3 
         ml.append(0)
         if len(ml)%3!=0:
             ml.append(0)
     return ml
 
-def get_nonsingular_matrix(): #Works fine # generates a random non singular matrix
+def get_nonsingular_matrix(): # generates a random non singular matrix
     flag=False
     while flag==False:
         arr = np.random.randint(10, size=(3, 3))
@@ -33,7 +33,7 @@ def get_nonsingular_matrix(): #Works fine # generates a random non singular matr
         else:
             flag=False
     return arr.astype(int)
-def msg_encoder(): #Works fine
+def msg_encoder(): #Encodes the message into a matrix (row,3)
     global array1
     global userinput
     userinput=input("Please enter a message to encode: ")
@@ -42,7 +42,7 @@ def msg_encoder(): #Works fine
     originalmsg=(array1.reshape(row,3)).astype(int)
     return originalmsg
 
-def decoded_msg():
+def decoded_msg(): #Decodes the matrix generated in the previous function and gets the original user input
     ml=[]
     g = get_nonsingular_matrix()
     encoded_matrix = np.matmul(msg_encoder(), g)
